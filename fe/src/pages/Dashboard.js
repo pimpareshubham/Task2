@@ -16,7 +16,7 @@ const Dashboard = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filter, setFilter] = useState('');
     const [sortedUsers, setSortedUsers] = useState([]);
-    const [showAddUserModal, setShowAddUserModal] = useState(false);
+
     const [newUser, setNewUser] = useState({
         name: '',
         email: '',
@@ -43,7 +43,9 @@ const Dashboard = () => {
 
     useEffect(() => {
         filterUsers(filter);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filter, users]);
+
 
     const loadUsers = async () => {
         try {
@@ -98,10 +100,12 @@ const Dashboard = () => {
             if (isConfirmed) {
                 await axios.delete(`${API_BASE_URL}/delete/${userId}`);
                 toast('User deleted successfully!')
+
                 setUsers(users.filter((user) => user._id !== userId));
                 console.log('User deleted successfully!');
             }
         } catch (error) {
+
             console.error('Error deleting user:', error);
         }
     };
@@ -112,7 +116,7 @@ const Dashboard = () => {
     };
 
     const handleEditUser = (userId) => {
-      
+
         setUsers((prevUsers) =>
             prevUsers.map((user) =>
                 user._id === userId ? { ...user, isEditing: !user.isEditing } : { ...user, isEditing: false }
@@ -122,10 +126,10 @@ const Dashboard = () => {
 
     const handleSaveEdit = async (user) => {
         try {
-            
+
             // Perform the update operation on the server
             await axios.put(`${API_BASE_URL}/update/${user._id}`, user);
-    
+
             // Update the local state to reflect the change
             setUsers((prevUsers) =>
                 prevUsers.map((prevUser) =>
@@ -141,7 +145,7 @@ const Dashboard = () => {
             console.error('Error updating user:', error);
         }
     };
-    
+
 
     const handleAddUser = async () => {
         try {
@@ -155,32 +159,32 @@ const Dashboard = () => {
 
                 return;
             }
-    
+
             // Assuming newUser is an object containing user data (name, email, phone)
             const response = await axios.post(`${API_BASE_URL}/signup`, newUser);
 
             console.log('Response message:', response.data.message);
 
-    
-         
-    
+
+
+
             // Reset the newUser state to clear the form fields
             setNewUser({ name: '', email: '', phone: '' });
-    
+
             // Display a success message
             toast(response.data.message);
-    
+
             // Reload the list of users
             loadUsers();
         } catch (error) {
             // Handle errors, display an error message, or log the error
             console.error('Error adding user:', error);
-    
+
             // Optionally, display an error toast message
             toast('Error adding user.');
         }
     };
-    
+
 
 
     const handleShowAddUserModal = () => {
@@ -241,7 +245,7 @@ const Dashboard = () => {
             {sortedUsers.length > 0 ? (
                 <div>
                     <h2 className="form-label">User Listing</h2>
-                    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3  g-2">
+                    <div className="row row-cols-1 row-cols-md-2 g-2">
                         {sortedUsers.map((user) => (
                             <div key={user._id} className="col mb-4">
                                 <div className="card">
@@ -343,15 +347,15 @@ const Dashboard = () => {
 
 
             {/* Filter and Sort Options */}
-           
+
 
             {/* Add User Modal */}
             <div
-                className={`modal fade ${showAddUserModal ? 'show' : ''}`}
+                className={`modal fade`}
                 id="addUserModal"
                 tabIndex="-1"
                 aria-labelledby="exampleModalLabel"
-                aria-hidden={!showAddUserModal}
+
 
             >
                 <div className="modal-dialog m">
@@ -376,25 +380,35 @@ const Dashboard = () => {
                                         className="form-control"
                                         value={newUser.name}
                                         onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+                                        pattern="[A-Za-z ]+"
+                                        required
                                     />
+                                    <div>{newUser.name && !/^[A-Za-z ]+$/.test(newUser.name) && 'Only letters and spaces allowed'}</div>
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Email:</label>
                                     <input
-                                        type="text"
+                                        type="email"
                                         className="form-control"
                                         value={newUser.email}
                                         onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+                                        required
                                     />
                                 </div>
+
+
+
                                 <div className="mb-3">
                                     <label className="form-label">Phone:</label>
                                     <input
-                                        type="text"
+                                        type="tel"
                                         className="form-control"
                                         value={newUser.phone}
                                         onChange={(e) => setNewUser({ ...newUser, phone: e.target.value })}
+                                        pattern="[0-9]{10}"
+                                        required
                                     />
+                                    <div>{newUser.phone && !/^[0-9]{10}$/.test(newUser.phone) && 'Enter a valid 10-digit phone number'}</div>
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Password:</label>
@@ -403,7 +417,10 @@ const Dashboard = () => {
                                         className="form-control"
                                         value={newUser.password}
                                         onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+                                        minLength="6"
+                                        required
                                     />
+                                    <div>{newUser.password && newUser.password.length < 6 && 'Password must be at least 6 characters long'}</div>
                                 </div>
                             </form>
                         </div>
