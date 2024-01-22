@@ -42,6 +42,7 @@ const Details = () => {
 
             <div className='container details-main mt-5'>
                 <div className='row'>
+                    <h1 className='form-label'>User Details</h1>
                     <div className='col-sm-12'>
                         <div className='card mb-2'>
                             <div className='card-body'>
