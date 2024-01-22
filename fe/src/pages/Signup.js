@@ -65,8 +65,7 @@ const Signup = () => {
 
       <div className="container main mt-5 mb-5">
         <div className="row lgc">
-          {/* <div className='col'></div> */}
-          <div className="col-md-6 col-sm-12 col-lg-6">
+          <div className="col-9">
             <div className="card d-block">
               <div className="card-body">
                 <h2 className="card-title text-center login-heading">Signup</h2>
@@ -83,21 +82,28 @@ const Signup = () => {
                       placeholder="Enter your name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                      pattern="[A-Za-z ]+"
+                      required
                     />
+                    <div>{name && !/^[A-Za-z ]+$/.test(name) && 'Only letters and spaces allowed'}</div>
                   </div>
+
                   <div className="mb-3">
                     <label className="form-label" htmlFor="email">
                       Email
                     </label>
                     <input
                       className="form-control lgup"
-                      type="text"
+                      type="email"
                       name="email"
                       placeholder="Enter your email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      required
                     />
+                 
                   </div>
+
                   <div className="mb-3">
                     <label className="form-label" htmlFor="password">
                       Password
@@ -109,20 +115,27 @@ const Signup = () => {
                       placeholder="Enter your password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      minLength="6"
+                      required
                     />
+                    <div>{password && password.length < 6 && 'Password must be at least 6 characters long'}</div>
                   </div>
+
                   <div className="mb-3">
                     <label className="form-label" htmlFor="phone">
                       Phone
                     </label>
                     <input
                       className="form-control lgup"
-                      type="text"
+                      type="tel"
                       name="phone"
                       placeholder="Enter your phone"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
+                      pattern="[0-9]{10}"
+                      required
                     />
+                    <div>{phone && !/^[0-9]{10}$/.test(phone) && 'Enter a valid 10-digit phone number'}</div>
                   </div>
 
                   <div className="mb-3">
@@ -134,6 +147,7 @@ const Signup = () => {
                       name="city"
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
+                      required
                     >
                       <option value="">Select City</option>
                       <option value="Mumbai">Mumbai</option>
@@ -146,10 +160,13 @@ const Signup = () => {
                     <label className="form-label" htmlFor="state">
                       State
                     </label>
-                    <Select className='form-label-2'
+                
+                    <Select
+                      className="form-label-2"
                       options={stateOptions}
-                      value={stateOptions.find(option => option.value === state)}
+                      value={stateOptions.find((option) => option.value === state)}
                       onChange={(selectedOption) => setState(selectedOption.value)}
+                      required
                     />
                   </div>
 
@@ -165,6 +182,7 @@ const Signup = () => {
                           value="male"
                           checked={gender === 'male'}
                           onChange={() => setGender('male')}
+                          required
                         />
                         <label className="form-check-label" htmlFor="gridRadios1">
                           Male
@@ -179,6 +197,7 @@ const Signup = () => {
                           value="female"
                           checked={gender === 'female'}
                           onChange={() => setGender('female')}
+                          required
                         />
                         <label className="form-check-label" htmlFor="gridRadios2">
                           Female
@@ -197,6 +216,7 @@ const Signup = () => {
                             type="checkbox"
                             id={`gridCheck${option.value}`}
                             checked={sources.includes(option.value)}
+             
                             onChange={() =>
                               setSources((prevSources) =>
                                 prevSources.includes(option.value)
@@ -214,7 +234,9 @@ const Signup = () => {
                   </div>
 
                   <div className="signuplink">
-                    <Link className='form-label' to="/login">Already have an account? Click here to Login</Link>
+                    <Link className="form-label" to="/login">
+                      Already have an account? Click here to Login
+                    </Link>
                   </div>
 
                   <button className="btn btn-primary mt-2" type="submit">
@@ -224,7 +246,6 @@ const Signup = () => {
               </div>
             </div>
           </div>
-          {/* <div className='col'></div> */}
         </div>
       </div>
     </>
