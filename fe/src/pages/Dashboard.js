@@ -241,7 +241,7 @@ const Dashboard = () => {
             {sortedUsers.length > 0 ? (
                 <div>
                     <h2 className="form-label">User Listing</h2>
-                    <div className="row row-cols-1 row-cols-md-3 g-2">
+                    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3  g-2">
                         {sortedUsers.map((user) => (
                             <div key={user._id} className="col mb-4">
                                 <div className="card">
