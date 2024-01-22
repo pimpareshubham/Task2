@@ -45,7 +45,7 @@ const Login = () => {
     <>
       {loading ? (
         <div className="loader-overlay">
-          <div className="loader" style={{ background: 'transparent' }}>
+          <div className="loader" style={{ background: 'transparent', borderRadius: '50%', overflow: 'hidden' }}>
             <HashLoader color="#36d7b7" />
           </div>
         </div>
