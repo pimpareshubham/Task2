@@ -66,7 +66,7 @@ const Signup = () => {
       <div className="container main mt-5 mb-5">
         <div className="row lgc">
           {/* <div className='col'></div> */}
-          <div className="col-9">
+          <div className="col-md-6 col-sm-12 col-lg-6">
             <div className="card d-block">
               <div className="card-body">
                 <h2 className="card-title text-center login-heading">Signup</h2>
