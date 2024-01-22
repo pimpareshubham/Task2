@@ -1,5 +1,5 @@
 module.exports = {
    
-    MONGODB_URL : "mongodb+srv://shubhampimpare111:JMJKKF5vFXWuRj7C@cluster0.mxxpmhg.mongodb.net/?retryWrites=true&w=majority/mindful",
+    MONGODB_URL : "mongodb+srv://dbuser:dbuser@serverlessinstance0.fabfzys.mongodb.net/?retryWrites=true&w=majority",
     JWT_SECRET : "jajsndsjndksdnkasamdn"
 }
