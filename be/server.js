@@ -5,17 +5,17 @@ const app = express()
 app.use(express.json())
 app.use(cors(
   {
-    origin: ["https://task2-ruddy-ten.vercel.app/"],
-    methods: ["POST", "GET", "PUT","DELETE"],
+    origin: ["https://task2-ruddy-ten.vercel.app"],
+    methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
-}
+  }
 ));
-const {MONGODB_URL} = require('./config')
+const { MONGODB_URL } = require('./config')
 
 mongoose.connect(MONGODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => {
     console.log('Connected to MongoDB');
   })
@@ -23,13 +23,13 @@ mongoose.connect(MONGODB_URL, {
     console.error('Error connecting to MongoDB:', err);
   });
 
-  app.listen(5000,()=>{
-    console.log("Server started on 5000")
-  })
+app.listen(5000, () => {
+  console.log("Server started on 5000")
+})
 
-  
 
-  require('./models/admin_model')
-  app.use(require('./routes/admin_route'))
 
- 
+require('./models/admin_model')
+app.use(require('./routes/admin_route'))
+
+
