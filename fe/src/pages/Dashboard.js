@@ -422,16 +422,11 @@ const Dashboard = () => {
                                 className="btn btn-primary"
                                 data-bs-dismiss="modal"
                                 onClick={() => {
-                                    // handleCloseAddUserModal();
                                     handleAddUser();
                                 }}
                             >
                                 Save
                             </button>
-
-                            {/* <button type="button" className="btn btn-primary" onClick={handleAddUser}>
-                                Save
-                            </button> */}
                         </div>
                     </div>
                 </div>
