@@ -11,7 +11,6 @@ const Dashboard = () => {
 
     const user = JSON.parse(localStorage.getItem('user'));
 
-
     const [users, setUsers] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filter, setFilter] = useState('');
@@ -149,28 +148,21 @@ const Dashboard = () => {
 
     const handleAddUser = async () => {
         try {
-            // Make sure newUser is not empty before making the request
-            if (!newUser.name || !newUser.email || !newUser.phone) {
+          
+            if (!newUser.name || !newUser.email || !newUser.phone || !newUser.password) {
                 // Handle the case where some fields are empty
                 console.error('Please fill in all the required fields.');
                 toast('Please fill in all the required fields.')
                 handleShowAddUserModal();
 
-
                 return;
             }
 
-            // Assuming newUser is an object containing user data (name, email, phone)
+        
             const response = await axios.post(`${API_BASE_URL}/signup`, newUser);
 
             console.log('Response message:', response.data.message);
-
-
-
-
-            // Reset the newUser state to clear the form fields
             setNewUser({ name: '', email: '', phone: '' });
-
             // Display a success message
             toast(response.data.message);
 
@@ -179,13 +171,9 @@ const Dashboard = () => {
         } catch (error) {
             // Handle errors, display an error message, or log the error
             console.error('Error adding user:', error);
-
-            // Optionally, display an error toast message
             toast('Error adding user.');
         }
     };
-
-
 
     const handleShowAddUserModal = () => {
         const modal = new bootstrap.Modal(document.getElementById('addUserModal'));
@@ -199,11 +187,10 @@ const Dashboard = () => {
 
 
     if (!user) {
-        // If user is not available in localStorage, you can redirect or show a login page
+        // If user is not available in localStorage
         return (
             <div className="container not-logged-in mt-5">
                 <div className='card'>Please log in to access the dashboard.</div>
-                {/* You can add a Link to your login page or redirect logic here */}
             </div>
         );
     }
@@ -344,9 +331,6 @@ const Dashboard = () => {
             >
                 Add User
             </button>
-
-
-            {/* Filter and Sort Options */}
 
 
             {/* Add User Modal */}
