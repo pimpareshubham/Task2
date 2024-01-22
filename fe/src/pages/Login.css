@@ -48,18 +48,6 @@
   color: white;
 }
 
-.card-content {
-  width: 80%; /* Adjust the width as needed */
-  padding: 20px; /* Adjust the padding as needed */
-}
-
-@media (max-width: 768px) {
-  .card-content {
-    width: 90%; /* Adjust the width for smaller screens */
-    padding: 15px; /* Adjust the padding for smaller screens */
-  }
-}
-
 
   .form-label{
     color: white;
