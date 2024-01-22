@@ -305,17 +305,17 @@ const Dashboard = () => {
                                                 <h5 className="card-title">{user.name}</h5>
                                                 <p className="card-text">Email: {user.email}</p>
                                                 <p className="card-text">Phone: {user.phone}</p>
-                                                <Link to={`/details/${user._id}`} className="btn btn-primary me-2">
+                                                <Link to={`/details/${user._id}`} className="btn btn-primary me-2 mt-2">
                                                     View Details
                                                 </Link>
                                                 <button
-                                                    className="btn btn-warning me-2"
+                                                    className="btn btn-warning me-2 mt-2"
                                                     onClick={() => handleEditUser(user._id)}
                                                 >
                                                     Edit
                                                 </button>
                                                 <button
-                                                    className="btn btn-danger"
+                                                    className="btn btn-danger mt-2"
                                                     onClick={() => handleDeleteUser(user._id)}
                                                 >
                                                     Delete
