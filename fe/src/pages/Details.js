@@ -36,7 +36,7 @@ const Details = () => {
     return (
         <div className='container details-main mt-5'>
             <div className='row'>
-                <div className='col-sm-12 col-md-6 col-lg-6'>
+                <div className=''>
                     <div className='card mb-2'>
                         <div className='card-body'>
                             {/* <h5 className='card-title'>Name : {user.name}</h5> */}
