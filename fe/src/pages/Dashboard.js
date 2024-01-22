@@ -39,7 +39,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         loadUsers();
-    }, []);
+    }, [users]);
 
     useEffect(() => {
         filterUsers(filter);
