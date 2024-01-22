@@ -55,7 +55,7 @@ const Login = () => {
 
         <div className="row lgc">
           {/* <div className='col'></div> */}
-          <div className="col-6 col-sm-12">
+          <div className="col-md-6">
             <div className="card d-block">
               <div className="card-body">
                 <h2 className="card-title text-center login-heading">Login</h2>
