@@ -97,6 +97,7 @@ const Dashboard = () => {
             const isConfirmed = window.confirm('Are you sure you want to delete this user?');
             if (isConfirmed) {
                 await axios.delete(`${API_BASE_URL}/delete/${userId}`);
+                toast('User deleted successfully!')
                 setUsers(users.filter((user) => user._id !== userId));
                 console.log('User deleted successfully!');
             }
